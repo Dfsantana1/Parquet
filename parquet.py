@@ -1,6 +1,7 @@
 import pyarrow as pa
 import pyarrow.parquet as pq
 import pandas as pd
+import os
 
 data = [
     {"pregunta": "¿Cuál es la capital de Colombia?", "respuesta": "Bogotá"},
@@ -11,12 +12,11 @@ data = [
 
 df = pd.json_normalize(data)
 
+file_path = 'file.parquet'
 table = pa.Table.from_pandas(df)
 
-pq.write_table(table, 'C:\\Users\\Diego\\OneDrive\\Escritorio\\serverpy\\tu_archivo.parquet')
+pq.write_table(table, file_path)
 
-table = pq.read_table('C:\\Users\\Diego\\OneDrive\\Escritorio\\serverpy\\tu_archivo.parquet')
+#elimarlo luego de usarlo
+#os.remove(file_path)
 
-
-
-print(df)
